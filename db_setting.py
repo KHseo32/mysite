@@ -2,29 +2,30 @@ import pymysql
 import pymysql.cursors
 
 _db = pymysql.connect(
-        host='KHSeo.mysql.pythonanywhere-services.com',
-        port=3306,
-        user='KHSeo',
-        password='tjrbgjs13^',
-        db='KHSeo$ubion'
+        host = 'KHSeo.mysql.pythonanywhere-services.com',
+        port = 3306,
+        user = 'KHSeo',
+        password = 'tjrbgjs13^',
+        db = 'KHSeo$ubion'
         )
 
 cursor = _db.cursor(pymysql.cursors.DictCursor)
 
 create_user = """
-        CREATE TABLE IF NOT EXISTS `user` (
-        id VARCHAR(32) PRIMARY KEY,
-        password VARCHAR(64) NOT NULL,
-        name VARCHAR(32) NOT NULL
+        create table
+        if not exists
+        user(
+        id varchar(32) primary key,
+        password varchar(64) not null,
+        name varchar(32) not null
         )
     """
-
-# Execute the SQL query
+# sql 쿼리문 실행
 cursor.execute(create_user)
-# Commit the transaction
+# 동기화
 _db.commit()
-# Close the connection
+# 서버와의 연결 종료
 _db.close()
 
-# Confirmation
-print('Table created successfully.')
+# 확인
+print('table 생성 완료')
